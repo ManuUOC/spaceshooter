@@ -37,6 +37,7 @@ public class MenuController : MonoBehaviour
             }
       
             Naves[nave].transform.GetChild(0).GetComponent<Image>().enabled = true;
+            UserController._user.naveSeleccionada = nave;
         }
     }
 
