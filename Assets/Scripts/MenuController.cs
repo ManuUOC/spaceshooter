@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using System.IO;
+
 
 public class MenuController : MonoBehaviour
 {
+    public TMP_InputField InputNombreUsuario;
     public GameObject[] Naves;
+    private  PlayerData playerD = new PlayerData();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +43,25 @@ public class MenuController : MonoBehaviour
             }
       
             Naves[nave].transform.GetChild(0).GetComponent<Image>().enabled = true;
-            UserController._user.naveSeleccionada = nave;
+            playerD.NaveSeleccionada = nave;
         }
     }
 
     public void GoSpace()
     {
-        SceneManager.LoadScene("Game");
+
+        if(InputNombreUsuario != null)
+        {
+            if (!string.IsNullOrEmpty((InputNombreUsuario.text)) && playerD.NaveSeleccionada != -1)
+            {
+                string json = JsonUtility.ToJson(playerD);
+                //File.WriteAllText("" , json); //Application.persistentDataPath
+                SceneManager.LoadScene("Game");
+            }
+        }
+
+        
+      
+        
     }
 }

@@ -6,10 +6,16 @@ public class PlayerData
 {
     public string Nombre;
     public int NaveActual;
+    public int NaveSeleccionada;
+    public int Puntuacion;
+   
 
-    public PlayerData(PlayerData pd)
+    public PlayerData()
     {
         Nombre = "";
         NaveActual = 0;
+        NaveSeleccionada = 0;
+        Puntuacion = 0;
+       
     }
 }

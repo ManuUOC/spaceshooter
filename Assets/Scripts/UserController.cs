@@ -6,7 +6,7 @@ public class UserController : MonoBehaviour
 {
     public static UserController _user;
     public PlayerData _player;
-    public int naveSeleccionada;
+   
     private void Awake()
     {
         if (_user != null && _user != this)
@@ -23,8 +23,8 @@ public class UserController : MonoBehaviour
     /// <summary>
     /// TODO: Cambiar por registro en Firebase
     /// </summary>
-    public void CrearUsuario(PlayerData pd)
-    {
-        PlayerData newPD = new PlayerData(pd);
-    }
+//    public void CrearUsuario(PlayerData pd)
+//    {
+//        PlayerData newPD = new PlayerData();
+//    }
 }
