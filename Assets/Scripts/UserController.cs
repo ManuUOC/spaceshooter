@@ -6,6 +6,7 @@ public class UserController : MonoBehaviour
 {
     public static UserController _user;
     public PlayerData _player;
+    public int naveSeleccionada;
     private void Awake()
     {
         if (_user != null && _user != this)
