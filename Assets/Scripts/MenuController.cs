@@ -49,19 +49,14 @@ public class MenuController : MonoBehaviour
 
     public void GoSpace()
     {
-
         if(InputNombreUsuario != null)
         {
             if (!string.IsNullOrEmpty((InputNombreUsuario.text)) && playerD.NaveSeleccionada != -1)
             {
                 string json = JsonUtility.ToJson(playerD);
-                //File.WriteAllText("" , json); //Application.persistentDataPath
+                File.WriteAllText(Application.persistentDataPath + "\\data.json", json); //Application.persistentDataPath
                 SceneManager.LoadScene("Game");
             }
-        }
-
-        
-      
-        
+        }     
     }
 }
