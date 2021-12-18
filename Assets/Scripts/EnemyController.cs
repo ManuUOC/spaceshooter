@@ -84,6 +84,7 @@ public class EnemyController : MonoBehaviour
                 this.GetComponent<BoxCollider2D>().enabled = false;
             }
         }
+        this.GetComponent<AudioSource>().Play();
         Invoke("Destruir", 0.5f);
     }
     public void Destruir()

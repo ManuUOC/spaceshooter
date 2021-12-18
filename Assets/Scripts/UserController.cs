@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class UserController : MonoBehaviour
 {
     public static UserController _user;
-    public PlayerData _player;
-   
+    public AudioSource _audio;
+    public int NaveActual = 0;
     private void Awake()
     {
         if (_user != null && _user != this)
@@ -19,12 +20,21 @@ public class UserController : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+    public PlayerData ComprobarJson()
+    {
+        PlayerData _player = null;
+        if (System.IO.File.Exists(Application.persistentDataPath + "\\data.json"))
+        {
+            string json = System.IO.File.ReadAllText(Application.persistentDataPath + "\\data.json");
+            _player = JsonUtility.FromJson<PlayerData>(json);
+        }
+        return _player;
+    }
 
-    /// <summary>
-    /// TODO: Cambiar por registro en Firebase
-    /// </summary>
-//    public void CrearUsuario(PlayerData pd)
-//    {
-//        PlayerData newPD = new PlayerData();
-//    }
+    public void GuardarJson(PlayerData pd)
+    {
+        string jsonGuardar = JsonUtility.ToJson(pd);
+        File.WriteAllText(Application.persistentDataPath + "\\data.json", jsonGuardar);
+    }
+
 }

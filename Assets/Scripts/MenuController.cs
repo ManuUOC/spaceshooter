@@ -9,15 +9,14 @@ using System.IO;
 
 public class MenuController : MonoBehaviour
 {
-    public TMP_InputField InputNombreUsuario;
     public GameObject[] Naves;
-    private  PlayerData playerD = new PlayerData();
-    
+    private PlayerData playerD = new PlayerData();
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Naves[0].transform.GetChild(0).GetComponent<Image>().enabled = true;
     }
 
     // Update is called once per frame
@@ -41,22 +40,21 @@ public class MenuController : MonoBehaviour
                     Naves[i].transform.GetChild(0).GetComponent<Image>().enabled = false;
                 }
             }
-      
             Naves[nave].transform.GetChild(0).GetComponent<Image>().enabled = true;
-            playerD.NaveSeleccionada = nave;
+            if(UserController._user != null)
+            {
+                UserController._user.NaveActual = nave;
+            }
         }
     }
 
     public void GoSpace()
     {
-        if(InputNombreUsuario != null)
-        {
-            if (!string.IsNullOrEmpty((InputNombreUsuario.text)) && playerD.NaveSeleccionada != -1)
-            {
-                string json = JsonUtility.ToJson(playerD);
-                File.WriteAllText(Application.persistentDataPath + "\\data.json", json); //Application.persistentDataPath
-                SceneManager.LoadScene("Game");
-            }
-        }     
+        SceneManager.LoadScene("Game");
+    }
+
+    public void Salir()
+    {
+        Application.Quit();
     }
 }
