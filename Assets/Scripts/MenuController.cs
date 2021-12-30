@@ -52,6 +52,10 @@ public class MenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+    public void GoTuto()
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
 
     public void Salir()
     {
